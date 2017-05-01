@@ -97,6 +97,9 @@
   [req setHTTPBody:reqBody];
 
   NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+  sessionConfiguration.timeoutIntervalForRequest = 240.0;
+  sessionConfiguration.timeoutIntervalForResource = 240.0;
+  
   NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:(id)self delegateQueue:[NSOperationQueue mainQueue]];
   _task = [session dataTaskWithRequest:req completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
       NSString * str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
